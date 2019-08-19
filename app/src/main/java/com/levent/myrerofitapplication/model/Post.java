@@ -1,4 +1,14 @@
 
+/*
+ * Created by Abdulkadir LEVENT  19.08.2019 22:32
+ * Copyright (c) 2019 . All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * Last modified:  19.08.2019 20:28
+ * Contact: Email : abdulkadirlevent@hotmail.com
+ * Package: app / MyRerofitApplication
+ * Mobil Proje Yönetim Sistemleri
+ */
+
 package com.levent.myrerofitapplication.model;
 
 import java.io.Serializable;
