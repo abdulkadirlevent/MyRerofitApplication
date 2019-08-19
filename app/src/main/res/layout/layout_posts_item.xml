@@ -13,7 +13,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lyt_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,11 +24,14 @@
     android:paddingBottom="2dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:layout_marginTop="8dp"
         android:minHeight="32dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="#EFFFDE"
         app:cardCornerRadius="5dp"
         app:cardElevation="1dp"

@@ -11,10 +11,8 @@
 package com.levent.myrerofitapplication.activity;
 
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
@@ -51,39 +49,47 @@ public class PostActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
-        /**
-         * 12 ID NOLU DATA ALINACAK
-         * .getPostID(12) Data ID yazınız
-         */
+
+        Post post = (Post) getIntent().getSerializableExtra("POST_EXTRA");
+        if (post != null) {
+            setData(post);
+        } else {
+            /**
+             * 12 ID NOLU DATA ALINACAK
+             * .getPostID(12) Data ID yazınız
+             */
+            getData(12);
+        }
+    }
+
+    public void getData(int dataID) {
         NetworkService.getInstance()
                 .getJSONApi()
-                .getPostID(12)
+                .getPostID(dataID)
                 .enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                Log.i(TAG, response.body().toString());
+                    @Override
+                    public void onResponse(Call<Post> call, Response<Post> response) {
+                        Log.i(TAG, response.body().toString());
 
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        Log.i(TAG, "onSuccess:"+ response.body().toString());
-                        //Post post = response.body();
-                        setData(response.body());
-                    } else {
-                        Log.i(TAG, "Kayıt bulunamadı!");
-                        Toast.makeText(PostActivity.this, "Kayıt bulunamadı!", Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+                                Log.i(TAG, "onSuccess:" + response.body().toString());
+                                setData(response.body());
+                            } else {
+                                Log.i(TAG, "Kayıt bulunamadı!");
+                                Toast.makeText(PostActivity.this, "Kayıt bulunamadı!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-                Log.i(TAG, "Hata!" + t.getMessage());
-                t.printStackTrace();
-            }
-        });
+                    @Override
+                    public void onFailure(Call<Post> call, Throwable t) {
+                        Log.i(TAG, "Hata!" + t.getMessage());
+                        t.printStackTrace();
+                    }
+                });
     }
 
     public void setData(Post post) {
@@ -117,7 +123,6 @@ public class PostActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     @Override
     public void onBackPressed() {
