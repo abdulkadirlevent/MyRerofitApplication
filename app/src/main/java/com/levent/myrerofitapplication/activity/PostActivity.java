@@ -69,8 +69,8 @@ public class PostActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         Log.i(TAG, "onSuccess:"+ response.body().toString());
-                        Post post = response.body();
-                        setData(post);
+                        //Post post = response.body();
+                        setData(response.body());
                     } else {
                         Log.i(TAG, "Kayıt bulunamadı!");
                         Toast.makeText(PostActivity.this, "Kayıt bulunamadı!", Toast.LENGTH_SHORT).show();
