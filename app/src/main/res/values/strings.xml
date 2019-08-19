@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Rerofit Application</string>
+    <string name="large_text">
+        "Merhaba.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_post">PostActivity</string>
+    <string name="title_activity_posts">PostsActivity</string>
+</resources>
