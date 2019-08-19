@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">My Rerofit Application</string>
     <string name="large_text">
-        "Merhaba.\n\n"
+        "Merhaba Samet Akgül:\n
+https://jsonplaceholder.typicode.com üzerinden demo veriler kullanılmıştır.\n"
     </string>
+    <string name="large_text2">
+        "Merhaba Samet Akgül:\n
+https://jsonplaceholder.typicode.com/posts/12 üzerinden demo veri kullanılmıştır.\n
+Tek bir kayır gösteriliyor.\n"
+    </string>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_post">PostActivity</string>
     <string name="title_activity_posts">PostsActivity</string>

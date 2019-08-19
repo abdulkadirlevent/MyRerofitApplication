@@ -5,17 +5,34 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.levent.myrerofitapplication.R;
+import com.levent.myrerofitapplication.adapter.PostsAdapter;
+import com.levent.myrerofitapplication.api.NetworkService;
+import com.levent.myrerofitapplication.model.Post;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PostsActivity extends AppCompatActivity {
     public static final String TAG = "PostsActivity";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.recyclerView_posts) RecyclerView recyclerView_posts;
+
+    private PostsAdapter mPostsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +43,47 @@ public class PostsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+
+        NetworkService.getInstance()
+                .getJSONApi()
+                .getAllPosts()
+                .enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                Log.i(TAG, response.body().toString());
+
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        Log.i(TAG, "onSuccess:"+ response.body().toString());
+                        loadDataList(response.body());
+                    } else {
+                        Log.i(TAG, "Kayıt bulunamadı!");
+                        Toast.makeText(PostsActivity.this, "Kayıt bulunamadı!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.i(TAG, "Hata!" + t.getMessage());
+                t.printStackTrace();
+            }
+        });
+
     }
+
+    /**
+     *
+     * @param usersList
+     */
+    private void loadDataList(List<Post> usersList) {
+        mPostsAdapter = new PostsAdapter(usersList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PostsActivity.this);
+        recyclerView_posts.setLayoutManager(layoutManager);
+        recyclerView_posts.setAdapter(mPostsAdapter);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
