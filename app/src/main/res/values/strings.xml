@@ -17,7 +17,7 @@ https://jsonplaceholder.typicode.com üzerinden demo veriler kullanılmıştır.
     <string name="large_text2">
         "Merhaba Samet Akgül:\n
 https://jsonplaceholder.typicode.com/posts/12 üzerinden demo veri kullanılmıştır.\n
-Tek bir kayır gösteriliyor.\n"
+Tek bir kayıt gösteriliyor.\n"
     </string>
 
     <string name="action_settings">Settings</string>
