@@ -68,31 +68,31 @@
                 android:id="@+id/button_obje_al"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Json Obje al" />
+                android:text="Json Obje (GET Method)" />
 
             <Button
                 android:id="@+id/button_liste_al"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Json Liste al" />
+                android:text=" Json Liste (GET Method)" />
 
             <Button
                 android:id="@+id/button_delete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Post delete" />
+                android:text=" delete post (DELETE Method)" />
 
             <Button
                 android:id="@+id/button_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Post Create" />
+                android:text=" Create post (POST Method)" />
 
             <Button
                 android:id="@+id/button_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Post Update" />
+                android:text=" Update post (PUT Method)" />
 
         </LinearLayout>
 
