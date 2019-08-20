@@ -1,8 +1,8 @@
 /*
- * Created by Abdulkadir LEVENT  19.08.2019 22:32
+ * Created by Abdulkadir LEVENT  20.08.2019 03:34
  * Copyright (c) 2019 . All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
- * Last modified:  19.08.2019 22:05
+ * Last modified:  20.08.2019 01:13
  * Contact: Email : abdulkadirlevent@hotmail.com
  * Package: app / MyRerofitApplication
  * Mobil Proje Yönetim Sistemleri
@@ -10,6 +10,7 @@
 
 package com.levent.myrerofitapplication.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -50,7 +51,7 @@ public class PostsActivity extends AppCompatActivity  {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
+
         NetworkService.getInstance()
                 .getJSONApi()
                 .getAllPosts()

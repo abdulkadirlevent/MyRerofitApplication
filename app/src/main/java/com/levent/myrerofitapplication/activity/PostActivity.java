@@ -1,8 +1,8 @@
 /*
- * Created by Abdulkadir LEVENT  19.08.2019 22:32
+ * Created by Abdulkadir LEVENT  20.08.2019 03:34
  * Copyright (c) 2019 . All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
- * Last modified:  19.08.2019 22:04
+ * Last modified:  20.08.2019 02:17
  * Contact: Email : abdulkadirlevent@hotmail.com
  * Package: app / MyRerofitApplication
  * Mobil Proje Yönetim Sistemleri
@@ -21,8 +21,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.levent.myrerofitapplication.R;
+import com.levent.myrerofitapplication.api.ApiInterface;
 import com.levent.myrerofitapplication.api.NetworkService;
 import com.levent.myrerofitapplication.model.Post;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -64,7 +66,41 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * ÖRNEK 1
+     * @param dataID
+     */
     public void getData(int dataID) {
+        ApiInterface service = NetworkService.getInstance().getJSONApi();
+        Call<Post> call = service.getPostID(dataID);
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                Log.i(TAG, response.body().toString());
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        Log.i(TAG, "onSuccess:" + response.body().toString());
+                        setData(response.body());
+                    } else {
+                        Log.i(TAG, "Kayıt bulunamadı!");
+                        Toast.makeText(PostActivity.this, "Kayıt bulunamadı!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                Log.e(TAG, "Hata!" + t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * ÖRNEK 2
+     * @param dataID
+     */
+    public void getData2(int dataID) {
         NetworkService.getInstance()
                 .getJSONApi()
                 .getPostID(dataID)
@@ -86,7 +122,7 @@ public class PostActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Post> call, Throwable t) {
-                        Log.i(TAG, "Hata!" + t.getMessage());
+                        Log.e(TAG, "Hata!" + t.getMessage());
                         t.printStackTrace();
                     }
                 });
