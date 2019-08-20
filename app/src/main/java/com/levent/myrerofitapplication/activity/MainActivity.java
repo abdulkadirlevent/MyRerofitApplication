@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 Log.e(TAG, "Hata!" + t.getMessage());
+                call.cancel();
                 t.printStackTrace();
             }
         });
@@ -180,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 Log.e(TAG, "Hata!" + t.getMessage());
+                call.cancel();
                 t.printStackTrace();
             }
         });
@@ -208,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Post>call, Throwable t) {
                 Log.e(TAG, "Hata!" + t.getMessage());
+                call.cancel();
                 t.printStackTrace();
             }
         });

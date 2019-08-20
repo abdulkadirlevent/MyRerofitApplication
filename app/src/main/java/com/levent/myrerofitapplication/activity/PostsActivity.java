@@ -74,6 +74,7 @@ public class PostsActivity extends AppCompatActivity  {
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
                 Log.i(TAG, "Hata!" + t.getMessage());
+                call.cancel();
                 t.printStackTrace();
             }
         });
